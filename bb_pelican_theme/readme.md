@@ -1,0 +1,1 @@
+This is a theme for [Pelican](http://blog.getpelican.com/), a python based static site generator.

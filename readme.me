@@ -15,6 +15,6 @@ A d3 based visualization of career paths.
 ### [Cast Overlap](https://github.com/bbogin/projects/tree/master/castoverlap)
 A d3 based visualization of career paths.
 
-### Pelican Theme
+### [Pelican Theme](https://github.com/bbogin/projects/tree/master/bb_pelican_theme)
 A theme for pelican, a static site generator.
 

@@ -20,3 +20,10 @@ There's a live version [here](http://bbogin.com/projects/castoverlap.html).
 ### [Pelican Theme](https://github.com/bbogin/projects/tree/master/bb_pelican_theme)
 A theme for pelican, a static site generator.
 
+
+### Also
+Another website that I created to learn scrollmagic can be found at [bbogin.com/corecast](http://www.bbogin.com/corecast).
+CoreCast was in the film and media world, so I wanted to make something that looked related to that theme.
+
+
+

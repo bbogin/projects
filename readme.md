@@ -11,9 +11,11 @@ A django based web app to function like a local craiglist.
 
 ### [Majorchord](https://github.com/bbogin/projects/tree/master/majorchord)
 A d3 based visualization of career paths.
+There's a live version [here](http://bbogin.com/projects/majorchord.html)
 
 ### [Cast Overlap](https://github.com/bbogin/projects/tree/master/castoverlap)
 A d3 based visualization of career paths.
+There's a live version [here](http://bbogin.com/projects/castoverlap.html)
 
 ### [Pelican Theme](https://github.com/bbogin/projects/tree/master/bb_pelican_theme)
 A theme for pelican, a static site generator.

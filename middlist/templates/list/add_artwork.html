@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MiddList</title>
+    </head>
+
+    <body>
+        <h1>Add Artwork</h1>
+
+            {% if form.is_multipart %}
+                <form enctype="multipart/form-data" method="post" action="/add_artwork/">
+            {% else %}
+                <form method="post" action="/add_artwork/">
+            {% endif %}
+
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field.name }}
+                {{ field }}<br>
+            {% endfor %}
+
+            <input type="submit" name="submit" value="Create Book Posting" />
+        </form>
+    </body>
+
+</html>

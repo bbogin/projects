@@ -1,0 +1,129 @@
+
+@font-face {
+	font-family: "Jura";
+	src: url("../fonts/Jura-Regular.ttf") format("truetype");
+}
+
+body {
+  margin: 0px;
+}
+
+/*text*/
+
+#logo {
+	width: 200px;
+	margin: 0 auto;
+}
+
+#heading {
+  background-color: #01142B;
+  width: 100%;
+  height: 200px;
+}
+
+.descrip {
+  color: white;
+  text-align: center;
+  font-family: Jura;
+  background-color: #003264;
+  margin: 0;
+  padding: 30px 100px;
+}
+
+/*Graphic*/
+.label {
+  font-size: 12px;
+  font-family: sans-serif;
+}
+
+.centered{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*List*/
+
+.floater {
+  display: block;
+  float: left;
+}
+
+
+
+ul {
+  margin: 0;
+}
+
+li {
+  list-style-type: none;
+  padding: 0px 5px;
+  font-family: Garamond;
+}
+
+.off {
+  background-color: transparent;
+}
+
+.on {
+  color: white;
+}
+
+.arts .on {
+  background-color: #4a1486;
+}
+
+.humanities .on {
+  background-color: #fd8d3c;
+}
+.social .on {
+  background-color: #4292c6;
+}
+.natural .on {
+  background-color: #74c476;
+}
+
+
+[id ="7"],
+[id ="16"],
+[id ="27"],
+[id ="37"] {
+  font-size: 18px;
+  margin-top: 12px;
+}
+
+[id ="36"] {
+  margin-top: 12px;
+}
+
+[id ="1"] {
+  font-size: 18px;
+}
+
+[id ="37"].on,
+[id ="36"].on {
+  background-color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Movie Links</title>
+	<link rel="stylesheet" href="moviestyle.css">
+
+</head>
+<body>
+
+
+	<div class="container">
+		<p>When you enter a movie title, a force layout will show the movie as the central node, with a child node for each cast member. As you enter more movies, more nodes will appear, and connected nodes will show overlap between cast members. You can hover over a node for the castmember or movie name.
+		</p>
+		<form id="movieform">
+			<input id="movie" type="text" value="Please input a movie title"/>
+			<button style="display:none">Search</button>
+		</form>
+		<p id="warning">&nbsp;</p>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="movies.js"></script>
+
+</body>
+</html>

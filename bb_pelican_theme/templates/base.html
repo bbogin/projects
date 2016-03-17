@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+<head>
+    <meta charset="utf-8">
+    <title>{% block windowtitle %}{{ SITENAME }}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="author" content="{{ AUTHOR }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="{{ SITEURL }}/theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="{{ SITEURL }}/theme/local.css" rel="stylesheet">
+    <!-- <link href="../theme/local.css" rel="stylesheet"> -->
+    <link href="{{ SITEURL }}/theme/pygments.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/theme/favicon.ico">
+
+</head>
+
+<body>
+
+
+{% if page_name == "index" %}
+    <div class="main-pic">
+        <div class="main-title">gilgamath</div>
+    </div>
+{% else %}
+    <div class="main-heading"><h1>Gilgamath</h1></div>
+</div>
+{% endif %}
+
+
+<div class="container-fluid text-center">
+    <div class="row">
+        <nav class="navbar">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span> 
+              </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+
+
+                {% for title, link in MENUITEMS %}
+                    <li><a href="{{ link }}">{{ title }}</a></li>
+                {% endfor %}
+                    
+                {% if DISPLAY_PAGES_ON_MENU %}
+                {% for page in PAGES %}
+                    <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+                {% endif %}
+
+
+
+
+
+
+                {% if categories %}
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories
+                    <span class="caret"></span></a>
+                        <ul class="dropdown-menu">                
+                        {% for cat, null in categories %}
+                            <li><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                        {% endfor %}                   
+                        </ul>
+                </li>
+                {% endif %}
+
+
+
+
+
+                {% if LINKS %}
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Links
+                    <span class="caret"></span></a>
+                        <ul class="dropdown-menu">                
+                        {% for name, link in LINKS %}
+                            <li><a href="{{ link }}">{{ name }}</a></li>
+                        {% endfor %}
+                        </ul>
+                </li>
+                {% endif %}
+
+
+
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Site
+                    <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">Archives</a>
+                          <li><a href="{{ SITEURL }}/tags.html">Tags</a>
+                            {% if FEED_ALL_ATOM %}
+                                <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" rel="alternate">Atom feed</a></li>
+                            {% endif %}
+                            {% if FEED_ATOM %}
+                                <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" rel="alternate">Atom feed</a></li>
+                            {% endif %}
+                            {% if FEED_RSS %}
+                                <li><a href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" rel="alternate">RSS feed</a></li>
+                            {% endif %}
+                            {% if FEED_ALL_RSS %}
+                                <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" rel="alternate">RSS feed</a></li>
+                            {% endif %}
+                        </ul>
+                </li>
+
+
+
+              </ul>
+
+
+
+
+            </div>
+          </div>
+        </nav>
+        </div>
+    {% if SOCIAL %}
+    <div class="row social center-block">
+        <div class="col-xs-2 col-sm-4 "></div>
+        {% for name, link in SOCIAL %}
+            <div class="col-xs-2 col-sm-1" >
+                <a href="{{ link }}"><div class="social-icon {{ name }} center-block"></div></a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row social text-center">
+        <div class="col-xs-2 col-sm-4 "></div>
+        {% for name, link in SOCIAL %}
+            <div class="col-xs-2 col-sm-1 text-center" ><a href="{{ link }}">{{ name }}</a></div>
+        {% endfor %}
+    </div>
+    {% endif %} 
+</div>
+
+
+
+<div class="container">
+    <hr>
+    <div class="row">
+        <div>
+        {% block content %}{% endblock %}
+        </div>
+        
+
+    </div> {# End row #}
+
+<footer>
+<br />
+<p><a href="{{ SITEURL }}">{{ SITENAME }}</a> &copy; {{ AUTHOR }} 2014-2016</p>
+</footer>
+
+</div> <!-- /container -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{% include "analytics.html" %}
+{% include "github.html" %} 
+</body>
+</html>

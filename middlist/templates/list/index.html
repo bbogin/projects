@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>MiddList</title>
+        <link rel="stylesheet" href="{% static "css/index.css" %}" />
+    </head>
+
+
+    {% if user.is_authenticated %}
+    <h1>Hello {{ user.username }}!</h1>
+    <a href="/logout/">Logout</a>
+    <br>
+    <a href="/myaccount/">My Account</a>
+    {% else %}
+    <h1>Hello world!</h1>
+    <a href="/login/">Login</a>
+    {% endif %}
+    <body>
+        <h1>Choose one of the categories below:</h1>
+
+
+            <ul class="flex-container">
+                <a href="/bikes/">
+                <li>
+                <h2>Bikes</h2>
+                    <div>
+                    <div class="picture" style="background-image: url({% static "images/bike.jpg" %})"></div>
+                    <a href="/add_bike/">Post Bike</a>
+                    </div>
+                </li>  
+                </a>
+                
+                <a href="/books/">
+                <li>
+                <h2>Books</h2>
+                    <div>
+                    <div class="picture" style="background-image: url({% static "images/books.jpg" %})"></div>
+                    <a href="/add_book/">Post Book</a>
+                    </div>
+                </li>  
+                </a>
+
+                <a href="/dorm/">
+                <li>
+                <h2>Dorm Stuff</h2>
+                    <div>
+                    <div class="picture" style="background-image: url({% static "images/dorm.jpeg" %})"></div>
+                    <a href="/add_dorm/">Post Dorm Furnishings</a>
+                    </div>
+                </li>  
+                </a>
+
+                <a href="/artwork/">
+                <li>
+                <h2>Art</h2>
+                    <div>
+                    <div class="picture" style="background-image: url({% static "images/art.jpg" %})"></div>
+                    <a href="/add_artwork/">Post Artwork</a>
+                    </div>
+                </li>  
+                </a>
+                
+            </ul>
+
+
+
+
+    </body>
+</html>

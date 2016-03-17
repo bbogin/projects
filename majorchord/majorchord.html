@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Major Chord</title>
+	<link rel="stylesheet" href="majorchord.css">
+
+</head>
+<body>
+	<div id="heading">
+		<div id="logo"><img src="../images/whitelogo.svg"></div>
+	</div>
+	<div class="descrip">
+			<h1>Impact of Major on Career Path of Middlebury Alumni</h1>
+			<p class="tdescrip"> This is a graph showing the impact of major on career path. The left side of the circle is broken up into the majors that are available at Middlebury. Some majors have been grouped for clarity. The right side of the circle represents the different career paths that Middlebury alumni have chosen. Hover over the rim to isolate a particular major or career path, and click majors in the list to delve into the data in more detail. The data have been generated randomly.</p>
+	</div>	
+
+	<div id="majorlist">
+		<ul class="floater">
+			<div id="divs">
+			<div class="arts inner">
+				<li class="on" id="1">Arts</li>
+				<li class="off" id="2">Dance</li>
+				<li class="off" id="3">Film and Media Studies</li>
+				<li class="off" id="4">Music</li>
+				<li class="off" id="5">Studio Art</li>
+				<li class="off" id="6">Theatre</li>
+			</div>
+			<div class="humanities inner">
+				<li class="on" id="7">Humanities</li>
+				<li class="off" id="8">American Studies</li>
+				<li class="off" id="9">Classics</li>
+				<li class="off" id="10">History</li>
+				<li class="off" id="11">History of Art/Architecture</li>
+				<li class="off" id="12">Philosophy</li>
+				<li class="off" id="13">Religion</li>
+				<li class="off" id="14">English/Literature</li>
+				<li class="off" id="15">Languages</li>
+			</div>
+			<div class="social inner">
+				<li class="on" id="16">Social Sciences</li>
+				<li class="off" id="17">Economics</li>
+				<li class="off" id="18">Education Studies</li>
+				<li class="off" id="19">Geography</li>
+				<li class="off" id="20">Political Science</li>
+				<li class="off" id="21">Psychology</li>
+				<li class="off" id="22">Sociology/Anthropology</li>
+				<li class="off" id="23">Environmental Studies</li>
+				<li class="off" id="24">Gender Sexuality Feminist Studies</li>
+				<li class="off" id="25">International Politics and Economics</li>
+				<li class="off" id="26">International and Global Studies</li>
+			</div>
+			<div class="natural inner">
+				<li class="on" id="27">Natural Sciences</li>
+				<li class="off" id="28">Biology</li>
+				<li class="off" id="29">Chemistry &amp; Biochemistry</li>
+				<li class="off" id="30">Computer Science</li>
+				<li class="off" id="31">Geology</li>
+				<li class="off" id="32">Mathematics</li>
+				<li class="off" id="33">Physics</li>
+				<li class="off" id="34">Molecular Bio &amp; Biochem</li>
+				<li class="off" id="35">Neuroscience</li>
+				<li>&nbsp;</li>
+				<li class="off" id="36">Indpendent</li>
+				<li class="off" id="37">Select All</li>
+			</div>
+
+				
+
+			</div>  
+		</ul>
+	</div>
+
+
+	<div id="chords"></div>
+	<p class="descrip">
+		Created by Ben Bogin as an Independent Project for Professor Christopher Andrews, Winter Term 2015. Inspired by a similar graphic at Williams College. <br> Created using D3.js, by Mike Bostock.
+	</p>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type="text/javascript" src="majorchord.js"></script>
+
+</body>
+</html>

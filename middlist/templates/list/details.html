@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>Middlist</title>
+        <link rel="stylesheet" href="{% static "css/details.css" %}" />
+    </head>
+
+    <body>
+        <h1>{{ item }}</h1>
+
+        {% if item.isbn %}
+
+            By: {{ item.author }}<br>
+            ISBN: {{ item.isbn }}<br>
+            Edition {{ item.edition }}<br>
+            Posted by {{ item.creator.email }} on {{ item.date }}
+
+        
+        {% else %}
+            <img src="{{ MEDIA_URL }}{{ item.image }}" alt="{{ item.title }}" /><br>
+            Description: {{ item.description }}<br>
+            ${{ item.price }}<br>
+            Posted by {{ item.creator.email }} on {{ item.date }}
+
+        {% endif %}
+
+    </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>Middlist</title>
+        <link rel="stylesheet" href="{% static "css/myaccount.css" %}" />
+    </head>
+
+    <body>
+        <h1>My Account</h1>
+
+        {% if bikes %}
+        <h1>Bikes</h1>
+            <ul class="flex-container">
+                {% for bike in bikes %}
+               <a href="/{{ bike.category.slug }}/{{ bike.id }}/">
+                <li>
+                    <div class="outside">
+                    {{ bike.title }}
+
+                    <div class="picture" style="background-image: url({{ MEDIA_URL }}{{ bike.image }})"></div>
+                    <a href="/delete/{{ bike.category.slug}}/{{ bike.id }}">Delete Post</a>
+                    </div>
+                </li>
+                     
+                </a>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if artwork %}
+        <h1>Artwork</h1>
+            <ul class="flex-container">
+                {% for artwork in artwork %}
+
+                <a href="/{{ artwork.category.slug }}/{{ artwork.id }}/">
+                <li>
+                    <div class="outside">
+                    {{ artwork.title }}
+
+                    <div class="picture" style="background-image: url({{ MEDIA_URL }}{{ artwork.image }})"></div>
+                    <a href="/delete/{{ artwork.category.slug}}/{{ artwork.id }}">Delete Post</a>
+                    </div>
+                </li> 
+                </a>
+
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if dorm %}
+        <h1>Dorm Furnishings</h1>
+            <ul class="flex-container">
+                {% for dorm in dorm %}
+
+                <a href="/{{ dorm.category.slug }}/{{ dorm.id }}/">
+                <li>
+                    <div class="outside">
+                    {{ dorm.title }}
+
+                    <div class="picture" style="background-image: url({{ MEDIA_URL }}{{ dorm.image }})"></div>
+                    <a href="/delete/{{ dorm.category.slug}}/{{ dorm.id }}">Delete Post</a>
+                    </div>
+                </li> 
+                </a>
+
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if books %}
+        <h1>Books</h1>
+            <ul class="flex-container">
+                {% for book in books %}
+
+                <a href="/{{ book.category.slug }}/{{ book.id }}/">
+                <li>
+                    <div class="outside">
+                    {{ book.title }}
+
+                    <div class="picture" style="background-image: url({{ MEDIA_URL }}{{ book.image }})"></div>
+                    <a href="/delete/{{ book.category.slug}}/{{ book.id }}">Delete Post</a>
+                    </div>
+                </li> 
+                </a>
+
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+    </body>
+</html>

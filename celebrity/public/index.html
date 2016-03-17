@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <title>Celebrity</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<h1 id="heading">Celebrity</h1>
+
+<div id="round">Round 1</div>
+
+<div class="team" id="t1">Team 1<br></div>
+<div class="team" id="t2"><br>Team 2<br></div>
+
+
+
+
+
+<form id="nameform" action="javascript:void(0)">
+    <label for="name">Name: </label>
+    <input type="text" id="name" required autofocus />
+    <input type="radio" name="team" value="1">Team 1<br>
+  	<input type="radio" name="team" value="2">Team 2<br>
+</form>
+
+<form id="wordform" action="javascript:void(0)">
+    <label for="word">Add word: </label>
+    <input type="text" id="word" required autofocus />
+</form>
+
+
+
+
+
+<div id="readydiv">
+		<!-- <h2>It's your turn!</h2> -->
+		<button type="button" id="ready" class="btn btn-success">Ready?</button>
+</div>
+
+<div id="gameboard">
+	<div id="countdown"></div>
+	<div id="currentword"></div>
+	<button type="button" id="foul" class="btn btn-danger">Foul</button>
+	<button type="button" id="skip" class="btn btn-warning">Skip</button>
+	<button type="button" id="gotit" class="btn btn-success">Got it</button>
+</div>
+
+
+
+
+
+
+<div id="wins"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="js/socket.io-client.min.js"></script>
+
+
+<script type="text/javascript">
+
+$("#wordform").hide()
+$("#gameboard").hide()
+$("#readydiv").hide()
+
+
+
+
+
+
+var myid, myname, myteam;
+var mywords = [];
+var myturnstarted = false;
+var currentword = {}
+var paused;
+var state = {
+	names:{"1":[], "2":[]},
+	words:[],
+	wordsleft:[],
+	points:{"1":0, "2":0},
+	gamestarted:0,
+	round:1,
+	nextperson:0,
+	nextnext:0
+};
+
+function turnover() {
+	$("#countdown").html('');
+	$("#skip").removeClass("disabled")
+	$("#gameboard").hide()
+	socket.emit("nextturn", {id:state.nextperson, state:state})
+
+}
+
+function myturnstart() {
+	$("#readydiv").show()
+};
+
+function getword() {
+	if (state.wordsleft.length == 0) {
+		newround()
+	} else {
+		currentword["index"] = Math.round(Math.random()*(state.wordsleft.length-1));
+		currentword["word"] = state.wordsleft[currentword["index"]];
+		console.log(currentword)
+		console.log(state)
+		$("#currentword").html(currentword["word"])
+	}
+}
+
+function newround() {
+	paused = true;
+	$("#gameboard").hide()
+	state.round += 1;
+	$("#round").html('Round '+state.round.toString())
+	if (round > 3) {
+		gameover();
+	} else {
+		state.wordsleft = state.words;
+		console.log(state);
+		$("#readydiv").show();
+	};
+}
+
+function gameover() {
+	if (state["points"]["1"] == state["points"]["2"]){
+		$("#wins").html("It's a tie!")
+	}
+	else {
+		state["points"]["1"] > state["points"]["2"] ? $("#wins").html("Team 1 wins") : $("#wins").html("Team 2 wins")
+	}
+};
+
+
+
+
+
+
+
+
+$("#ready").click(function() {
+	paused = false;
+	$("#readydiv").hide()
+	if (!myturnstarted) {
+		myturnstarted = true;
+		$("#gameboard").show();
+		var now = Date.now();
+		var end = now + 25000;
+		var timeInterval = setInterval(function () {
+			if (paused){end += 250;}
+			var t = end-Date.now();
+			$("#countdown").html(Math.floor(t/1000).toString());
+			if (t <= 0){
+				turnover();
+				clearInterval(timeInterval);
+			}
+		}, 250);
+		getword()
+	}
+});
+$("#foul").click(function() {
+	getword();
+});
+$("#skip").click(function() {
+	$("#skip").addClass("disabled")
+	getword();
+});
+$("#gotit").click(function() {
+	state["points"][myteam] += 1
+	state["wordsleft"].splice(currentword["index"], 1);
+	getword();
+});
+
+
+
+var socket = io("http://localhost:3000");
+
+
+
+
+
+
+
+
+socket.on("connect", function(id) {
+	$("#heading").html("Celebrity - Connected");
+});
+
+socket.on("message", function(message) {
+	if ("id" in message){
+		myid = message.id;
+	};
+});
+
+socket.on("name", function(message) {
+	var team = message["team"];
+	var name = message["name"];
+	var id = message["id"];
+	state["names"][team].push(id)
+    $("#t"+team).append("<p id=\""+id+"\">"+name+"</p>")
+    console.log(state)
+});
+
+socket.on("newword", function(message) {
+	var word = message
+	state["words"].push(word)
+});
+
+
+socket.on("gamestart", function(startid) {
+	state["wordsleft"] = state["words"];
+	console.log(state["words"])
+	console.log(state["wordsleft"])
+	var id = startid;
+	if (myid == startid){
+		var otherteam = myteam == 1 ? 2 : 1;
+		state.nextperson = state['names'][otherteam][Math.round(Math.random()*(state['names'][otherteam].length-1))];
+		state.nextnext = (state['names'][myteam].indexOf(myid)+1)%state['names'][myteam].length
+		myturnstart();
+	}
+});
+
+socket.on("nextturn", function(message) {
+	var id = message.id;
+	state = message.state;
+
+	$("#t1").html('Team 1 - '+state["points"]["1"].toString()+"<br>");
+	$("#t1").html('<br>Team 2 - '+state["points"]["2"].toString()+"<br>");
+
+	if (myid == startid){
+		state.nextperson = state.nextnext
+		state.nextnext = (state['names'][myteam].indexOf(myid)+1)%state['names'][myteam].length
+		myturnstart();
+	}
+
+});
+
+
+
+
+
+
+
+
+socket.on("removename", function(message) {
+	var id = message;
+	$("#"+id).remove()
+});
+
+socket.on("disconnect", function() {
+	$("#heading").html("Celebrity - Disconnected");
+});
+
+
+
+
+
+
+
+
+
+
+
+$("#nameform").submit( function () {
+    myname = $("#name").val();
+    myteam = $("input[name=team]:checked").val().toString();
+    state["names"][myteam].push(myname)
+    $("#t"+myteam).append("<p id=\""+myid+"\">"+myname+"</p>")
+    socket.emit("name", {id:myid, team:myteam, name:myname});
+    $("#nameform").hide();
+    $("#wordform").show();
+});
+
+$("#wordform").submit( function () {
+    var word = $("#word").val();
+    mywords.push(word)
+    state["words"].push(word);
+    $("#word").val('');
+    socket.emit("newword", word);
+    if (mywords.length >= 3){
+    	$("#wordform").hide();
+    	socket.emit("enoughwords", myname);
+    }
+});
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ k }}</title>
+	<style type="text/css">
+
+	.chart {
+		display: block;
+		margin: auto;
+	}
+
+	.chart rect {
+	  	fill: steelblue;
+	}
+
+	.chart text {
+	  fill: white;
+	  font: 10px sans-serif;
+	  text-anchor: middle;
+	}
+
+	.axis text {
+	  font: 10px sans-serif;
+	}
+
+	.axis path,
+	.axis line {
+	  fill: none;
+	  stroke: #000;
+	  shape-rendering: crispEdges;
+	}
+	.axis text {
+		fill: black;
+	}
+
+	#list {
+		width: 100%;
+		text-align: center;
+		font-family: Century Gothic, sans-serif
+	}
+	#input {
+		text-align: center;
+	}
+	#input input {
+		font-size: 16pt;
+	}
+
+	</style>
+	
+</head>
+<body>
+
+<div id="input">
+	<input id=kwsearch type="text" name="kwsearch" onSubmit="javascript:kwsearch()"" placeholder="search here" "></input>	
+</div>
+<div class="svg"></div>
+<div id="list"></div>
+
+
+</body>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.15/d3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+search = $('#kwsearch')
+search.keypress(function (event) {
+	if (event.which == 13) {
+		console.log("192.168.0.103:8888/trends/"+search[0]["value"])
+		window.location = search[0]["value"]
+	}
+})
+
+
+
+
+
+
+
+
+
+
+	// capitalize first letter of title
+	document.title = "{{ k }}".substring(0,1).toUpperCase()+"{{ k }}".substring(1)
+
+	// load in data from django
+	var data = {{ j|safe }}
+	data = data["results"]
+	data = data.sort(function(a,b) {
+		if (a.year > b.year) return 1;
+		if (a.year < b.year) return -1;
+		return 0
+	})
+	console.log(data)
+	console.log(typeof(data[0].year))
+
+	// establish height and width for svg
+	var margin = {top: 20, right: 30, bottom: 30, left: 40},
+    width = 1500 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+    // create the ordinal scale (x-axis)
+    var x = d3.scale.ordinal()
+    .domain(data.map(function(d) { return d.year; }))
+    .rangeRoundBands([0, width], .05);
+
+    // create the visual x axis
+    // var years = []
+    // for (var i=0; i<data.length; i++){
+    // 	if (Number(data[i]["year"])%5==0){
+    // 		years.push(data[i]["year"])
+    // 	}
+    // }
+    var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+    // if (years.length>20){
+    // 	console.log(years)
+    // 	xAxis.tickValues(years)
+    // }
+
+    // create the linear scale (y-axis)
+	var y = d3.scale.linear()
+    .domain([0, d3.max(data, function(d) { return d.count; })])
+    .range([height, 0]);
+
+    // create the visual y axis
+    var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickFormat(d3.format("d"));
+
+    // set width and height for svg
+    var chart = d3.select(".svg").append("svg")
+    .attr("class", "chart")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // create a group for each bar to go into and translate it
+    var bar = chart.selectAll("g")
+    .data(data)
+  .enter().append("g")
+    .attr("transform", function(d, i) { return "translate(" + x(d.year) + ",0)"; });
+
+    // create the actual bars
+    bar.append("rect")
+    .attr("y", function(d) { return y(d.count); })
+    .attr("height", function(d) { return height - y(d.count); })
+    .attr("width", x.rangeBand());
+
+    // call the xaxis
+    chart.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+    // call the yaxis
+    chart.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+
+    // rotate the text of the xaxis
+    d3.selectAll(".x").selectAll("text")
+    .attr("transform", "rotate(-45)")
+    .attr("dy", "0em")
+    .attr("dx", "-1.8em")
+
+
+    // console.log(data[40]["movies"])
+
+    // tooltip!
+    var div = d3.select("#list").append("div")	
+    .attr("class", "tooltip")
+
+
+
+    bar.on("mouseover", function(d) {
+    		htmlstr = ""
+    		for (var i = 0; i<d.movies.length; i++){
+    			htmlstr += d.movies[i] + "<br>"
+    		}
+            div.html(htmlstr)		
+            })					
+        // .on("mouseout", function(d) {		
+        //     div.html("");	
+        // });
+    
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>
+
+
+
+
+

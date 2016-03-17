@@ -1,0 +1,121 @@
+/* this is bb/static */
+
+/*fonts*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+
+/* Styling for elements */
+body { font-size: 12pt; font-family: 'Open Sans'}
+p { font-size: 100%; line-height: 1.6em; margin-top: 0.8em; margin-bottom: 0.8em; }
+li { line-height: 1.6em; }
+h3 { margin-top: 2.5em; }
+.table th, .table td { line-height: 1.3em; }
+
+
+.main-pic {
+  height: 75vh;
+  background-image: url('bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: none;
+  display: flex;
+  /*align-items: center;*/
+  /*justify-content: center;*/
+}
+
+.main-title {
+  /*position: absolute;*/
+  padding-top: 10vh;
+  margin-left: 19vw;
+  color: white;
+  font-size: 56pt;
+}
+
+.main-heading {
+  text-align: center;
+}
+
+.navbar .navbar-nav {
+  font-size: 12pt;
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+  color: black;
+}
+
+.navbar-toggle .icon-bar {
+  background-color: black;
+}
+.social {
+  text-align: center;
+}
+
+/* Styling for articles */
+.article { padding-bottom:20px; padding-right: 40px; }
+.content-title { margin-bottom: 30px; }
+.article a:hover { text-decoration: none; } 
+
+
+
+/* Styling for the "other entries" section */
+/* Metadata */
+.articlemd {
+  /*padding: 6px 6px 4px;*/
+}
+
+/* Read more button */
+.btn-info.xsmall {
+    padding: 1px 3px 1px;
+    font-size: 11px;
+    float: none;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.article-text {
+  font-size: 12pt;
+}
+
+/* Article summary */
+.summary { 
+  margin-bottom: 4em;
+  font-size: 12pt;
+  /*padding: 6px 4px; */
+}
+
+.summary pre { display: none; }
+
+
+/* Styling for Social */
+
+.social {
+  font-size: 9pt;
+}
+
+div.social-icon.Twitter {content: url('./logos/twitter-logo.jpg');
+     max-height:20px;
+     width: auto;
+     height: auto;
+}
+div.social-icon.Bibsonomy {content: url('./logos/bibsonomy-logo.jpg');
+     max-height:20px;
+     width: auto;
+     height: auto;
+}
+div.social-icon.Linkedin {content: url('./logos/linkedin-logo.jpg');
+     max-height:20px;
+     width: auto;
+     height: auto;
+}
+div.social-icon.Cross.Validated {content: url('./logos/cv-logo.jpg');
+     max-height:20px;
+     width: auto;
+     height: auto;
+}
+

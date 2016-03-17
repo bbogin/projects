@@ -1,0 +1,26 @@
+@font-face {
+	font-family: "Raleway";
+	src: url("../fonts/Raleway-Thin.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Jura";
+	src: url("../fonts/Jura-Regular.ttf") format("truetype");
+}
+
+input {
+	font-family: Raleway;
+	font-size: 44px;
+	color: gray;
+	width: 800px
+}
+
+p {
+	font-family: Jura;
+	font-size: 18px;
+
+}
+
+.link {
+	stroke: grey;
+}

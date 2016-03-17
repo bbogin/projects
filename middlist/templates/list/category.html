@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>Middlist</title>
+        <link rel="stylesheet" href="{% static "css/category.css" %}" />
+    </head>
+
+    <body>
+        {% if category %}
+        <h1>{{ category }}</h1>
+        <a href="{{ link }}">Post {{ category }}</a><br><br><br>
+            {% if items %}
+            <ul class="flex-container">
+                {% for item in items %}
+            
+
+                <a href="/{{ item.category.slug }}/{{ item.id }}/">
+                <li>
+                    <div class="outside">
+                    {{ item.title }}
+
+                    <div class="picture" style="background-image: url({{ MEDIA_URL }}{{ item.image }})"></div>
+                    </div>
+                </li>
+                     
+                </a>
+                {% endfor %}
+            </ul>
+
+            {% else %}
+                <strong>No pages currently in category.</strong>
+            {% endif %}
+        {% else %}
+            The specified category {{ category }} does not exist!
+        {% endif %}
+    </body>
+</html>

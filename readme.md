@@ -1,4 +1,5 @@
 ## Ben's Projects
+These projects are in addition to my work as a programmer at CoreCast where I use Python to collect, parse, and analyze data.
 
 ### [Trends](https://github.com/bbogin/projects/tree/master/trends)
 A recent, simple, django based web app to visualize trends in movie keywords over time. Also utilizes d3.

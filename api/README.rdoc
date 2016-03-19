@@ -1,0 +1,11 @@
+== Personal API
+
+This is an early work in progress.
+
+Check back soon!
+
+
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.

@@ -1,5 +1,0 @@
-== Personal API
-
-This is an early work in progress.
-
-Check back soon!

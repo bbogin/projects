@@ -1,0 +1,38 @@
+{
+	"person": {
+		"name":"ben",
+		"contact":{
+			"address":"3630A 17th Street, SF, CA, 94114",
+			"phone":"4158478928",
+			"email":"benbogin@gmail.com"
+		},
+		"experience":[
+			{
+				"title":"programmer",
+				"company":"CoreCast",
+				"location":"San Francisco, CA",
+				"information": [
+					"Collected, parsed, and stored large amounts of data from sites including IMDb, Rotten Tomatoes",
+					"Created a movie trend visualizer using imdb keywords (github.com/bbogin/projects/tree/master/trends)",
+					"Correlated movie sales with demographics using Walmart sales data and census data",
+					"Hired a data scientist after recruiting, screening, and interviewing job candidates",
+					"Coded mainly in Python, with some JavaScript, HTML, CSS, and R"
+				]
+			}
+		],
+		"education":{
+			"college":"Middlebury College",
+			"degree":"Bachelor of Arts",
+			"year":2015,
+			"major":"Molecular Biology and Biochemistry",
+			"honors":"Magna cum laude",
+			"languages":["Spanish", "French"],
+			"relevant_coursework":["Information Visualization", "Data Structures", "Computer Architecture", "Programming Languages","Bioinformatics"]
+		},
+		"college_activites":[
+			{"organization":"dolci", "role":"President and Executive Chef", "information":"Managed all aspects of restaurant with $30k budget for 80 customers including purchasing preparation  cooking  menu design and recruiting"},
+			{"organization":"Community Council", "role":"Co-Chair", "information":"Elected by entire student body. Student body liaison for faculty and staff on all issues, met twice weekly with Dean of College"},
+			{"organization":"MiddleEndian", "role":"Web Developer"}
+		]
+	}
+}

@@ -61,7 +61,6 @@ var spaceship =
     y: 0
   },
   	thrust:-.01,
-  	points: 0,
   	falling: true,
   	landed:false,
     engineOn: false,
@@ -148,7 +147,7 @@ function updateInfo() {
 	context.fillText("Horizontal Speed: "+Math.round(spaceship.velocity.x).toString(),10,50);
 	context.fillText("Vertical Speed: "+Math.round(spaceship.velocity.y).toString(),10,70);
 	// context.fillText("Fuel: "+Math.round(spaceship.fuel).toString(),10,90);
-	context.fillText("Points: "+spaceship.points.toString(),10,90);
+	// context.fillText("Points: "+spaceship.points.toString(),10,90);
 }
 
 
@@ -265,17 +264,18 @@ function checkLanding() {
 
 
 
-function
-				for (var i = 0; i<landingpads.length; i++){
-					if ((spaceship.position.x > landingpads[i].x1) && (spaceship.position.x < landingpads[i].x2)){
-						spaceship.landed = true;
-						console.log("true")
-					} else {
-						spaceship.landed = false;
-						console.log("false")
-					}
-				}
-
+function checkSafe() {
+	for (var i = 0; i<landingpads.length; i++){
+		if ((spaceship.position.x > landingpads[i].x1) && (spaceship.position.x < landingpads[i].x2) && (spaceship.velocity.y < .5)){
+			spaceship.landed = true;
+			console.log("true")
+            break;
+		} else {
+			spaceship.landed = false;
+			console.log("false")
+		}
+	}
+}
 
 
 
@@ -298,8 +298,9 @@ function draw()
     if (spaceship.falling){
     	animationid = requestAnimationFrame(draw);
     } else {
+        console.log("called")
     	cancelAnimationFrame(animationid);
-    	checkLanding();
+    	checkSafe();
     	if (spaceship.landed){
     		alert("landed")
     	}

@@ -1,4 +1,21 @@
-var express = require('express')
+var express = require('express');
+
+
+// database stuff
+var dbConfig = require('./db.js');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+
+mongoose.connect('mongodb://localhost/trackmedb')
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("We did it!")
+});
+
+
+
 var app = express();
 
 

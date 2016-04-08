@@ -26,5 +26,5 @@ A work in progress, node.js based app to play the game "Celebrity." Incorporates
 
 
 ### Also
-Another website that I created to learn scrollmagic can be found at [bbogin.com/corecast/index.html](http://www.bbogin.com/corecast).
+Another website that I created to learn scrollmagic can be found at [bbogin.com/corecast/index.html](http://www.bbogin.com/corecast/index.html).
 CoreCast was in the film and media world, so I wanted to make something that looked related to that theme.
